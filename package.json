@@ -1,0 +1,27 @@
+{
+  "name": "simple-rest-api",
+  "version": "1.0.0",
+  "description": "See README.md",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinitrogen-tetroxide/simple-rest-api.git"
+  },
+  "author": "dinitrogen-tetroxide",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dinitrogen-tetroxide/simple-rest-api/issues"
+  },
+  "homepage": "https://github.com/dinitrogen-tetroxide/simple-rest-api#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.13.0",
+    "@typescript-eslint/parser": "^4.13.0",
+    "eslint": "^7.18.0",
+    "ts-node": "^9.1.1",
+    "tsc": "^1.20150623.0",
+    "typescript": "^4.1.3"
+  }
+}
