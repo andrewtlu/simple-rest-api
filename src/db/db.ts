@@ -7,15 +7,16 @@ export let connect = async () => {
         "database": "database.db",
         "synchronize": false,
         "logging": true,
+        "migrationsTableName": "custom_migration_table",
         "entities": [
-            __dirname + '/models/*.js'
+            __dirname + "/models/*.js"
         ],
         "migrations": [
-            __dirname + '/migrations/*.js'
+            __dirname + "/migrations/*.js"
         ],
         "cli": {
             entitiesDir: __dirname + "/models/",
-            migrationsDir: __dirname + '/migrations/'
+            migrationsDir: __dirname + "/migrations/"
         }
     });
 }
