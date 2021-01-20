@@ -71,13 +71,12 @@ app.put('/crafting-table-recipe/:item', async (req, res) => {
         const recipe = await CraftingTableRecipe.findOne({
             where: {
                 item: req.params.item,
-                slots: JSON.stringify(req.body.replaceSlots)
+                slots: JSON.stringify(req.body.oldSlots)
             } 
         });
 
         if (recipe) {
-            recipe.item = req.body.item ? req.body.item : recipe.item;
-            recipe.slots = req.body.slots ? JSON.stringify(req.body.slots) : recipe.slots;
+            recipe.slots = req.body.slots ? JSON.stringify(req.body.newSlots) : recipe.slots;
             await recipe.save();
             res.send(recipe);
         } else {
@@ -86,6 +85,26 @@ app.put('/crafting-table-recipe/:item', async (req, res) => {
     } catch (error) {
         res.status(500).send({message: "Unable to update recipe"});
     }
-})
+});
+
+app.delete('/crafting-table-recipe/:item', async (req, res) => {
+    try {
+        const recipe = await CraftingTableRecipe.findOne({
+            where: {
+                item: req.params.item,
+                slots: JSON.stringify(req.body.slots)
+            }
+        });
+
+        if (recipe) {
+            await recipe.remove();
+            res.json({message: 'Recipe deleted'})
+        } else {
+            res.status(404).send({message: 'Recipe not found'});
+        }
+    } catch (error) {
+        res.status(500).send({message: 'Unable to delete recipe'});
+    }
+});
 
 export {app};
