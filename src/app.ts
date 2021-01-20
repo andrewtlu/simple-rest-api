@@ -87,6 +87,7 @@ app.put('/crafting-table-recipe/:item', async (req, res) => {
     }
 });
 
+// Delete a recipe from table
 app.delete('/crafting-table-recipe/:item', async (req, res) => {
     try {
         const recipe = await CraftingTableRecipe.findOne({
