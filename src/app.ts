@@ -66,14 +66,26 @@ app.post('/crafting-table-recipe', async (req, res) => {
 });
 
 // Update recipe in table
-app.put('/crafting-table-recipe/:name', async (req, res) => {
-    const recipe = CraftingTableRecipe.find({
-        where: {
-            name: req.params.name
-        }
+app.put('/crafting-table-recipe/:item', async (req, res) => {
+    try {
+        const recipe = await CraftingTableRecipe.findOne({
+            where: {
+                item: req.params.item,
+                slots: JSON.stringify(req.body.replaceSlots)
+            } 
+        });
 
-        
-    })
+        if (recipe) {
+            recipe.item = req.body.item ? req.body.item : recipe.item;
+            recipe.slots = req.body.slots ? JSON.stringify(req.body.slots) : recipe.slots;
+            await recipe.save();
+            res.send(recipe);
+        } else {
+            res.status(404).send({message: "Recipe not found"});
+        }
+    } catch (error) {
+        res.status(500).send({message: "Unable to update recipe"});
+    }
 })
 
 export {app};
