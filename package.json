@@ -7,7 +7,9 @@
     "prebuild": "rm -rf dist/* && eslint --fix",
     "build": "tsc && cp -rf package.json dist/package.json",
     "prestart": "npm run build",
-    "start": "ts-node ."
+    "start": "ts-node .",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "repository": {
     "type": "git",

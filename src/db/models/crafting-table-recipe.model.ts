@@ -1,6 +1,6 @@
 import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity('crafting-table-recipes')
+@Entity('crafting-table-recipe')
 export class CraftingTableRecipe extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
