@@ -2,6 +2,7 @@ import express from 'express';
 import * as bodyParser from 'body-parser';
 import {connect} from './db/db';
 import {CraftingTableRecipe} from './db/models/crafting-table-recipe.model'
+import {Like} from 'typeorm';
 
 connect();
 
@@ -31,12 +32,9 @@ app.get('/crafting-table-recipe/:item', async (req, res) => {
                 res.status(404).send({message: "Recipe not found"});
             }
         } else if (type === 'uses') {
-            /* Broken, figure out a way to do LIKE operator on table
-            const regex = new RegExp(`.*${req.params.item}.*`);
-
             const recipes = await CraftingTableRecipe.find({
                 where: {
-                    slots: regex
+                    slots: Like(`%${req.params.item}%`)
                 }
             });
 
@@ -44,7 +42,7 @@ app.get('/crafting-table-recipe/:item', async (req, res) => {
                 res.json(recipes);
             } else {
                 res.status(404).send({message: "Recipes not found"});
-            }*/
+            }
         } else {
             throw(Error);
         }
